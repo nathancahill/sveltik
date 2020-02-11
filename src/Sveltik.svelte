@@ -1,5 +1,5 @@
 <script>
-    import { isEqual, pickBy, isEmpty, mapValues, keys } from 'lodash-es'
+    import { isEqual, pickBy, isEmpty, mapValues, keys, merge } from 'lodash-es'
     import { onMount, setContext, tick } from 'svelte'
     import { readable } from 'svelte/store'
     import { values, errors, warnings, touched, validators } from './stores'
@@ -240,14 +240,16 @@
             return
         }
 
-        errors.set({
-            ...validate(nextValues, bag),
-            ...mapValues($validators, (_, name) => {
-                if (!$validators[name]) return
+        errors.set(
+            merge(
+                validate(nextValues, bag),
+                mapValues($validators, (_, name) => {
+                    if (!$validators[name]) return
 
-                return $validators[name](nextValues[name], bag)
-            }),
-        })
+                    return $validators[name](nextValues[name], bag)
+                }),
+            )
+        )
     }
 
     setContext('handleBlur', handleBlur)
