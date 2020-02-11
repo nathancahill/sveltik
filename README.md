@@ -4,12 +4,7 @@ Forms in Svelte, inspired by [Formik](https://jaredpalmer.com/formik/).
 
 ```html
 <script>
-import {
-    Sveltik,
-    Form,
-    Field,
-    ErrorMessage,
-} from 'sveltik'
+import { Sveltik, Form, Field, ErrorMessage } from 'sveltik'
 
 let initialValues = {
     email: '',
