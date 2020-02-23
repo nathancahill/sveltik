@@ -34,7 +34,7 @@
     let submitSuccessCount = 0
 
     $: isValid = isEmpty(pickBy($errors))
-    $: isDirty = isEqual($values, initialValues)
+    $: isDirty = !isEqual($values, initialValues)
 
     $: {
         if (enableReinitialize) {
@@ -72,7 +72,7 @@
     function setFieldTouched(field, isTouched, shouldValidate = validateOnBlur) {
         touched.update(_t => ({ ..._t, [field]: isTouched }))
 
-        if (shouldValidate) {
+        if (isTouched && shouldValidate) {
             handleValidate()
         }
     }
@@ -300,4 +300,42 @@
     {handleInput}
     {handleReset}
     {handleSubmit}
+
+    props={{
+        errors: $errors,
+        touched: $touched,
+        values: $values,
+        warnings: $warnings,
+
+        isDirty,
+        isSubmitting,
+        isValid,
+        isValidating,
+        status,
+        submitAttemptCount,
+        submitFailureCount,
+        submitSuccessCount,
+
+        resetForm,
+        setErrors,
+        setFieldError,
+        setFieldTouched,
+        setFieldValue,
+        setFieldWarning,
+        setStatus,
+        setSubmitting,
+        setTouched,
+        setValues,
+        setWarnings,
+        submitFailure,
+        submitForm,
+        submitSuccess,
+        validateField,
+        validateForm,
+
+        handleBlur,
+        handleInput,
+        handleReset,
+        handleSubmit,
+    }}
 ></slot>
