@@ -343,15 +343,28 @@ With no options passed, `<Field />` will default to an HTML `<input />` element.
 
 [Open in REPL](https://svelte.dev/repl/47dade3d6be14be685c0347e0d525de7?version=3.19.1)
 
+MyInput.svelte
+
+```html
+<script>
+export let field
+</script>
+
+<input {...field} on:input={field.handleInput} on:blur={field.handleBlur} />
+```
+
+App.svelte
+
 ```html
 <script>
 import { Sveltik, Form, Field } from 'sveltik'
+import MyInput from './MyInput.svelte'
 </script>
 
 <div>
   <h1>My Form</h1>
   <Sveltik
-    initialValues={{ email: '', color: 'red', firstName: '' }}
+    initialValues={{ email: '', color: 'red', firstName: '', lastName: '' }}
     onSubmit={(values, actions) => {
       setTimeout(() => {
         alert(JSON.stringify(values, null, 2));
@@ -367,14 +380,22 @@ import { Sveltik, Form, Field } from 'sveltik'
         <option value="blue">Blue</option>
       </Field>
 
-      <Field name="lastName" let:field let:meta>
+      <Field name="firstName" let:field let:meta>
         <div>
-          <input type="text" placeholder="Email" {...field} />
+          <input
+            type="text"
+            placeholder="Jon"
+            {...field}
+            on:input={field.handleInput}
+            on:on:blur={field.handleBlur}
+          />
           {#if meta.touched && meta.error}
             <div className="error">{meta.error}</div>
           {/if}
         </div>
       </Field>
+
+      <Field name="lastName" placeholder="Doe" as={MyInput} />
       <button type="submit">Submit</button>
     </Form>
   </Sveltik>
