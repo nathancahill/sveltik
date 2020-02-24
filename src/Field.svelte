@@ -61,6 +61,27 @@
         on:blur={handleBlur}
         on:change={handleInput}
     />
+{:else if typeof as === 'object' || typeof as === 'function'}
+    <svelte:component
+        this={as}
+        field={{
+            name,
+            value: $values[name],
+            handleBlur,
+            handleInput,
+        }}
+        form={sveltikBag}
+        meta={{
+            initialError: initialErrors[name],
+            initialTouched: initialTouched[name],
+            initialValue: initialValues[name],
+            initialWarning: initialWarnings[name],
+            value: $values[name],
+            touched: $touched[name],
+            error: $errors[name],
+            warning: $warnings[name],
+        }}        
+    />
 {:else}
     <slot
         field={{

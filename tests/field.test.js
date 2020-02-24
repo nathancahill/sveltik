@@ -65,3 +65,11 @@ test('input let:props', async () => {
         `"<input type=\\"text\\" name=\\"color\\">"`,
     )
 })
+
+test('input component', async () => {
+    const { html } = await render('./tests/fixtures/as-component.svelte')
+
+    expect(clean(html)).toMatchInlineSnapshot(
+        `"<input type=\\"text\\" name=\\"color\\">"`,
+    )
+})
