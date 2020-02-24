@@ -26,6 +26,11 @@
     values.set(initialValues)
     warnings.set(initialWarnings)
 
+    setContext('initialErrors', initialErrors)
+    setContext('initialTouched', initialTouched)
+    setContext('initialValues', initialValues)
+    setContext('initialWarnings', initialWarnings)
+
     let isSubmitting = false
     let isValidating = false
     let status = initialStatus
@@ -195,10 +200,16 @@
     }
 
     function handleReset() {
+        isSubmitting = false
+        isValidating = false
+        status = initialStatus
+        submitAttemptCount = 0
+        submitFailureCount = 0
+        submitSuccessCount = 0
+
         values.set(initialValues)
         errors.set(initialErrors)
         touched.set(initialTouched)
-        status = initialStatus
 
         onReset($values, bag)
     }
@@ -256,6 +267,7 @@
     setContext('handleInput', handleInput)
     setContext('handleReset', handleReset)
     setContext('handleSubmit', handleSubmit)
+    setContext('sveltikBag', bag)
 
     onMount(() => {
         if (validateOnMount) {
