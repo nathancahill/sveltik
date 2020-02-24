@@ -1,50 +1,34 @@
 <script>
     import { getContext } from 'svelte'
-    import { values, validators } from './stores'
+    import { values, touched, errors, warnings, validators } from './stores'
 
     const handleInput = getContext('handleInput')
     const handleBlur = getContext('handleBlur')
 
-    export let as = 'input'
+    const initialErrors = getContext('initialErrors') || {}
+    const initialTouched = getContext('initialTouched') || {}
+    const initialValues = getContext('initialValues') || {}
+    const initialWarnings = getContext('initialWarnings') || {}
+
+    const sveltikBag = getContext('sveltikBag')
+
+    export let as = undefined
     export let type = 'text'
     export let name
     export let multiple = false
     export let validate = undefined
 
     $: validators.update(_v => ({ ..._v, [name]: validate }))
-    $: value = $values[name]
 </script>
-
-{#if as === undefined}
-<slot {handleInput} {handleBlur} fieldName={name} {value}></slot>
-{/if}
-
-{#if as === 'input'}
-    {#if type === 'number'}
-        <input
-            {...$$props}
-            type="number"
-            {value}
-            on:blur={handleBlur}
-            on:input={handleInput}
-        />
-    {:else}
-        <input
-            {...$$props}
-            {value}
-            on:blur={handleBlur}
-            on:input={handleInput}
-        />
-    {/if}
-{/if}
 
 {#if as === 'select'}
     {#if multiple}
         <!-- select multiple does not work with spread props -->
         <!-- https://github.com/sveltejs/svelte/issues/4392 -->
         <select
+            name={name}
             multiple
-            {value}
+            value={$values[name]}
             on:blur={handleBlur}
             on:input={handleInput}
         >
@@ -52,30 +36,68 @@
         </select>
     {:else}
         <select
+            name={name}
             {...$$props}
-            {value}
+            value={$values[name]}
             on:blur={handleBlur}
             on:input={handleInput}
         >
             <slot></slot>
         </select>
     {/if}
-{/if}
-
-{#if as === 'textarea'}
-<textarea
-    {...$$props}
-    {value}
-    on:blur={handleBlur}
-    on:input={handleInput}
-/>
-{/if}
-
-{#if as === 'checkbox'}
-<input
-    type="checkbox"
-    checked={value}
-    on:blur={handleBlur}
-    on:change={handleInput}
-/>
+{:else if as === 'textarea'}
+    <textarea
+        name={name}
+        {...$$props}
+        value={$values[name]}
+        on:blur={handleBlur}
+        on:input={handleInput}
+    />
+{:else if as === 'checkbox'}
+    <input
+        name={name}
+        type="checkbox"
+        checked={$values[name]}
+        on:blur={handleBlur}
+        on:change={handleInput}
+    />
+{:else}
+    <slot
+        field={{
+            name,
+            value: $values[name],
+            handleBlur,
+            handleInput,
+        }}
+        form={sveltikBag}
+        meta={{
+            initialError: initialErrors[name],
+            initialTouched: initialTouched[name],
+            initialValue: initialValues[name],
+            initialWarning: initialWarnings[name],
+            value: $values[name],
+            touched: $touched[name],
+            error: $errors[name],
+            warning: $warnings[name],
+        }}
+    >
+        {#if type === 'number'}
+            <input
+                name={name}
+                {...$$props}
+                type="number"
+                value={$values[name]}
+                on:blur={handleBlur}
+                on:input={handleInput}
+            />
+        {:else}
+            <input
+                name={name}
+                {...$$props}
+                value={$values[name]}
+                on:blur={handleBlur}
+                on:input={handleInput}
+            />
+        {/if}
+    </slot>
 {/if}
