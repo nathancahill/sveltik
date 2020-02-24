@@ -39,6 +39,6 @@
         "format": "prettier --write \"**/*.js\" \"**/*.json\"",
         "test": "jest",
         "preversion": "yarn run test",
-        "postversion": "git push --tags"
+        "postversion": "git push && git push --tags"
     }
 }
