@@ -19,7 +19,7 @@ test('valid input', async () => {
     const dom = document.body.lastChild
 
     expect(clean(dom.outerHTML)).toMatchInlineSnapshot(
-        `"<form><input type=\\"email\\" name=\\"email\\"><input type=\\"password\\" name=\\"password\\"><button type=\\"submit\\">Submit</button></form>"`,
+        `"<form><input name=\\"email\\" type=\\"email\\"><input name=\\"password\\" type=\\"password\\"><button type=\\"submit\\">Submit</button></form>"`,
     )
 
     const event = new window.InputEvent('input')
@@ -29,7 +29,7 @@ test('valid input', async () => {
     await tick()
 
     expect(clean(dom.outerHTML)).toMatchInlineSnapshot(
-        `"<form><input type=\\"email\\" name=\\"email\\"><input type=\\"password\\" name=\\"password\\"><button type=\\"submit\\">Submit</button></form>"`,
+        `"<form><input name=\\"email\\" type=\\"email\\"><input name=\\"password\\" type=\\"password\\"><button type=\\"submit\\">Submit</button></form>"`,
     )
 })
 
@@ -38,7 +38,7 @@ test('invalid input', async () => {
     const dom = document.body.lastChild
 
     expect(clean(dom.outerHTML)).toMatchInlineSnapshot(
-        `"<form><input type=\\"email\\" name=\\"email\\"><input type=\\"password\\" name=\\"password\\"><button type=\\"submit\\">Submit</button></form>"`,
+        `"<form><input name=\\"email\\" type=\\"email\\"><input name=\\"password\\" type=\\"password\\"><button type=\\"submit\\">Submit</button></form>"`,
     )
 
     const event = new window.InputEvent('input')
@@ -48,7 +48,7 @@ test('invalid input', async () => {
     await tick()
 
     expect(clean(dom.outerHTML)).toMatchInlineSnapshot(
-        `"<form><input type=\\"email\\" name=\\"email\\"><div>Invalid email address</div><input type=\\"password\\" name=\\"password\\"><button type=\\"submit\\">Submit</button></form>"`,
+        `"<form><input name=\\"email\\" type=\\"email\\"><div>Invalid email address</div><input name=\\"password\\" type=\\"password\\"><button type=\\"submit\\">Submit</button></form>"`,
     )
 })
 
