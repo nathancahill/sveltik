@@ -343,7 +343,7 @@ With no options passed, `<Field />` will default to an HTML `<input />` element.
 
 [Open in REPL](https://svelte.dev/repl/47dade3d6be14be685c0347e0d525de7?version=3.19.1)
 
-MyInput.svelte
+**MyInput.svelte**
 
 ```html
 <script>
@@ -353,7 +353,7 @@ export let field
 <input {...field} on:input={field.handleInput} on:blur={field.handleBlur} />
 ```
 
-App.svelte
+**App.svelte**
 
 ```html
 <script>
