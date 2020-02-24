@@ -1,6 +1,6 @@
 {
     "name": "sveltik",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "repository": "git@github.com:mapgrid/sveltik.git",
     "author": "mapgrid <noreply@mapgrid.org>",
     "svelte": "src/index.js",
