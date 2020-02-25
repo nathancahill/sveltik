@@ -1592,10 +1592,10 @@ cssstyle@^2.0.0, cssstyle@^2.2.0:
   dependencies:
     cssom "~0.3.6"
 
-dainte@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/dainte/-/dainte-0.1.3.tgz#cefedfe90aada0993e36aa468088b848723ca2db"
-  integrity sha512-rmC3kONIdPuRufMPqVyR+u48Ia0eEPoVqLZwGpiYSY96eo6sXRn27YySKeACYBl3rBj1kPxQAXyahsjzb4z9lw==
+dainte@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/dainte/-/dainte-0.1.4.tgz#2c93bc4e2a355786aa08bfb05edc1c11cfbf6cc3"
+  integrity sha512-5Ya9Lwa+Jh43gSMfUe91N+etj2HehD7Zi0QA6go9gzuoKtEGkofhTY+6f2svak2YB/0rR3rViAoO1YEi9jYR8w==
   dependencies:
     "@rollup/plugin-node-resolve" "^7.1.1"
     code-red "^0.1.1"
