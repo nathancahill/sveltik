@@ -1,6 +1,6 @@
 <script>
     import { omit } from 'lodash-es'
-    import { errors } from './stores'
+    import { errors, touched } from './stores'
 
     export let name
     export let as = undefined
@@ -8,7 +8,7 @@
     $: error = $errors[name]
 </script>
 
-{#if error}
+{#if error && $touched[name]}
     {#if as === "abbr"}
         <abbr {...omit($$props, ['name', 'as'])}>{error}</abbr>
     {:else if as === "address"}
