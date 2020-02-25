@@ -41,9 +41,12 @@ test('invalid input', async () => {
         `"<form><input name=\\"email\\" type=\\"email\\"><input name=\\"password\\" type=\\"password\\"><button type=\\"submit\\">Submit</button></form>"`,
     )
 
-    const event = new window.InputEvent('input')
+    const inputEvent = new window.InputEvent('input')
     dom.elements.email.value = 'a'
-    dom.elements.email.dispatchEvent(event)
+    dom.elements.email.dispatchEvent(inputEvent)
+
+    const blurEvent = new window.FocusEvent('blur')
+    dom.elements.email.dispatchEvent(blurEvent)
 
     await tick()
 
