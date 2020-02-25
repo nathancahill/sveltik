@@ -7,7 +7,7 @@ let initialErrors = {
 }
 
 let initialTouched = {
-    color: true,
+    color: false,
 }
 </script>
 

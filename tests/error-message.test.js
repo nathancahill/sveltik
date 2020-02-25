@@ -11,3 +11,9 @@ test('error message', async () => {
             <div class=\\"my-error\\" id=\\"my-error\\">Required</div><span>Required</span>"
     `)
 })
+
+test('untouched', async () => {
+    const { html } = await render('./tests/fixtures/errors-untouched.svelte')
+
+    expect(clean(html)).toMatchInlineSnapshot(`""`)
+})

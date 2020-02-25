@@ -486,3 +486,46 @@ All other props are passed directly through to the DOM node.
 // is identical to this...
 <form on:reset={props.handleReset} on:submit={props.handleSubmit} {...props} />
 ```
+
+## `<ErrorMessage />`
+
+`<ErrorMessage />` is a component that renders the error message of a given field
+if that field has been visited (i.e.`touched[name] === true`) (and there is an `error` message present).
+It expects that all error messages are stored for a given field as a string.
+
+### Props
+
+- `as?: string | Component`
+- `name: string`
+
+### let:props
+
+- `let:msg: string`
+
+### Reference
+
+#### Props
+
+##### `as?: string | Component`
+
+Either a Svelte component or the name of an HTML element to render.
+If not specified, `<ErrorMessage />` will just return a string.
+
+Svelte components must `export let` the props that they expect to be passed.
+The available props are match the let:props (see below).
+Also is passed an additional prop `props` which contains all additional props passed to `<ErrorMessage />`.
+
+##### `name: string`
+
+A field's name in Sveltik state. Required.
+
+#### let:props
+
+##### `let:msg: string`
+
+A field's error message.
+
+#### Differences with Formik
+
+- Nested field names (paths) are not supported.
+- Uses `as` prop instead of `component` for consistency with `<Field />`
