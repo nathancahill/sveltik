@@ -348,9 +348,10 @@ With no options passed, `<Field />` will default to an HTML `<input />` element.
 ```html
 <script>
 export let field
+export let props
 </script>
 
-<input {...field} on:input={field.handleInput} on:blur={field.handleBlur} />
+<input {...field} {...props} on:input={field.handleInput} on:blur={field.handleBlur} />
 ```
 
 **App.svelte**
@@ -416,7 +417,59 @@ import MyInput from './MyInput.svelte'
 
 ### Reference
 
+#### Props
+
+##### `as?: string | Component`
+
+Either a Svelte component or the name of an HTML element to render. Supports the following:
+
+- `input`
+- `select`
+- `textarea`
+
+Svelte components must `export let` the props that they expect to be passed.
+The available props are match the let:props (see below). Also is passed an additional prop
+`props` which contains all additional props passed to `<Field />`.
+
+##### `name: string`
+
+A field's name in Sveltik state. Required.
+
+##### `validate?: (value: any) => undefined | string`
+
+You can run independent field-level validations by passing a function to the `validate` prop.
+The function will respect the `validateOnBlur` and `validateOnChange` config/props specified in the `<Field>`'s parent `<Sveltik>`.
+
+If invalid, return a `string` containing the error message or return `undefined`.
+
+#### let:props
+
+##### `let:field: FieldInputProps`
+
+An object that contains:
+
+- `name: string` - The name of the field
+- `value: any` - The value of the field
+- `handleInput: (e: HTMLInputEvent) => void` - Input handler to be bound with `on:input`
+- `handleBlur: (e: HTMLBlurEvent) => void` - Blur handler to be bound with `on:blur`
+
+##### `let:form: SveltikBag`
+
+##### `let:meta: FieldMetaProps`
+
+An object that contains:
+
+- `initialError?: string` - The field's initial error if the field is present in `initialErrors`
+- `initialTouched?: boolean` - The field's initial value if the field is present in `initialTouched`
+- `initialValue?: any` - The field's initial value if the field is given a value in `initialValues`
+- `initialWarning?: string` - The field's initial warning if the field is given a value in `initialWarnings`
+- `error?: string` - The field's error message
+- `touched?: boolean` - Whether the field has been visited
+- `value?: any` - The field's value
+- `warning?: string` - The field's warning message
+
 #### Differences with Formik
 
 - Validation is synchronous
 - Event handlers must be set implictly with `on:input`, `on:blur` instead of spread attributes.
+- Nested field names (paths) are not supported.
