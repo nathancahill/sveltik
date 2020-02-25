@@ -473,3 +473,16 @@ An object that contains:
 - Validation is synchronous
 - Event handlers must be set implictly with `on:input`, `on:blur` instead of spread attributes.
 - Nested field names (paths) are not supported.
+
+## `<Form />`
+
+Form is a small wrapper around an HTML `<form>` element that automatically hooks into Sveltik's `handleSubmit` and `handleReset`.
+All other props are passed directly through to the DOM node.
+
+```js
+// so...
+<Form />
+
+// is identical to this...
+<form on:reset={props.handleReset} on:submit={props.handleSubmit} {...props} />
+```

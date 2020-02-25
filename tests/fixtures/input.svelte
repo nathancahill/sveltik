@@ -31,9 +31,9 @@ let onSubmit = (values) => new Promise((resolve, reject) => {
 >
     <Form>
         <Field type="email" name="email" />
-        <ErrorMessage name="email" component="div" />
+        <ErrorMessage name="email" as="div" />
         <Field type="password" name="password" />
-        <ErrorMessage name="password" component="div" />
+        <ErrorMessage name="password" as="div" />
         <button type="submit" disabled={isSubmitting}>
             Submit
         </button>
