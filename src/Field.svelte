@@ -1,5 +1,6 @@
 <script>
     import { getContext } from 'svelte'
+    import { omit } from 'lodash-es'
     import { values, touched, errors, warnings, validators } from './stores'
 
     const handleInput = getContext('handleInput')
@@ -37,7 +38,7 @@
     {:else}
         <select
             name={name}
-            {...$$props}
+            {...omit($$props, ['as', 'name', 'validate'])}
             value={$values[name]}
             on:blur={handleBlur}
             on:input={handleInput}
@@ -48,7 +49,7 @@
 {:else if as === 'textarea'}
     <textarea
         name={name}
-        {...$$props}
+        {...omit($$props, ['as', 'name', 'validate'])}
         value={$values[name]}
         on:blur={handleBlur}
         on:input={handleInput}
@@ -80,7 +81,8 @@
             touched: $touched[name],
             error: $errors[name],
             warning: $warnings[name],
-        }}        
+        }}
+        props={omit($$props, ['as', 'name', 'validate'])}
     />
 {:else}
     <slot
@@ -105,7 +107,7 @@
         {#if type === 'number'}
             <input
                 name={name}
-                {...$$props}
+                {...omit($$props, ['as', 'name', 'validate'])}
                 type="number"
                 value={$values[name]}
                 on:blur={handleBlur}
@@ -114,7 +116,7 @@
         {:else}
             <input
                 name={name}
-                {...$$props}
+                {...omit($$props, ['as', 'name', 'validate'])}
                 value={$values[name]}
                 on:blur={handleBlur}
                 on:input={handleInput}

@@ -387,7 +387,7 @@ import MyInput from './MyInput.svelte'
             placeholder="Jon"
             {...field}
             on:input={field.handleInput}
-            on:on:blur={field.handleBlur}
+            on:blur={field.handleBlur}
           />
           {#if meta.touched && meta.error}
             <div className="error">{meta.error}</div>
