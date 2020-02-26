@@ -125,8 +125,6 @@
         <s {...omit($$props, ['name', 'as'])}>{error}</s>
     {:else if as === "samp"}
         <samp {...omit($$props, ['name', 'as'])}>{error}</samp>
-    {:else if as === "script"}
-        <script {...omit($$props, ['name', 'as'])}>{error}</script>
     {:else if as === "section"}
         <section {...omit($$props, ['name', 'as'])}>{error}</section>
     {:else if as === "select"}
@@ -137,8 +135,6 @@
         <span {...omit($$props, ['name', 'as'])}>{error}</span>
     {:else if as === "strong"}
         <strong {...omit($$props, ['name', 'as'])}>{error}</strong>
-    {:else if as === "style"}
-        <style {...omit($$props, ['name', 'as'])}>{error}</style>
     {:else if as === "sub"}
         <sub {...omit($$props, ['name', 'as'])}>{error}</sub>
     {:else if as === "summary"}
