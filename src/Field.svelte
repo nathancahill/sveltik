@@ -1,10 +1,10 @@
 <script>
-    import { getContext } from 'svelte'
+    import { getContext, createEventDispatcher } from 'svelte'
     import { omit } from 'lodash-es'
     import { values, touched, errors, warnings, validators } from './stores'
 
-    const handleInput = getContext('handleInput')
-    const handleBlur = getContext('handleBlur')
+    const contextHandleInput = getContext('handleInput')
+    const contextHandleBlur = getContext('handleBlur')
 
     const initialErrors = getContext('initialErrors') || {}
     const initialTouched = getContext('initialTouched') || {}
@@ -18,6 +18,18 @@
     export let name
     export let multiple = false
     export let validate = undefined
+
+    const dispatch = createEventDispatcher()
+
+    function handleBlur(e) {
+        contextHandleBlur(e)
+        dispatch('blur', e)
+    }
+
+    function handleInput(e) {
+        contextHandleInput(e)
+        dispatch('input', e)
+    }
 
     $: validators.update(_v => ({ ..._v, [name]: validate }))
 </script>
@@ -68,8 +80,8 @@
         field={{
             name,
             value: $values[name],
-            handleBlur,
-            handleInput,
+            handleBlur: contextHandleBlur,
+            handleInput: contextHandleInput,
         }}
         form={sveltikBag}
         meta={{
@@ -89,8 +101,8 @@
         field={{
             name,
             value: $values[name],
-            handleBlur,
-            handleInput,
+            handleBlur: contextHandleBlur,
+            handleInput: contextHandleInput,
         }}
         form={sveltikBag}
         meta={{
