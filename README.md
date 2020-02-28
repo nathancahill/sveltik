@@ -1,4 +1,4 @@
-# Sveltik
+# Sveltik ![CI](https://github.com/nathancahill/sveltik/workflows/CI/badge.svg)
 
 Forms in Svelte, inspired by [Formik](https://jaredpalmer.com/formik/).
 
