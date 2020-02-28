@@ -221,11 +221,13 @@
         isSubmitting = true
         isValidating = true
 
-        handleValidate()
+        const nextErrors = handleValidate()
 
         isValidating = false
 
-        if (!isValid) {
+        // isValid hasn't updated yet
+        if (!isEmpty(pickBy(nextErrors))) {
+            submitFailureCount += 1
             isSubmitting = false
             return
         }
@@ -251,16 +253,18 @@
             return
         }
 
-        errors.set(
-            merge(
-                validate(nextValues, bag),
-                mapValues($validators, (_, name) => {
-                    if (!$validators[name]) return
+        const nextErrors = merge(
+            validate(nextValues, bag),
+            mapValues($validators, (_, name) => {
+                if (!$validators[name]) return
 
-                    return $validators[name](nextValues[name], bag)
-                }),
-            )
+                return $validators[name](nextValues[name], bag)
+            }),
         )
+
+        errors.set(nextErrors)
+
+        return nextErrors
     }
 
     setContext('handleBlur', handleBlur)
