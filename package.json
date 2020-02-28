@@ -1,8 +1,8 @@
 {
     "name": "sveltik",
     "version": "0.1.10",
-    "repository": "git@github.com:mapgrid/sveltik.git",
-    "author": "mapgrid <noreply@mapgrid.org>",
+    "repository": "git@github.com:nathancahill/sveltik.git",
+    "author": "Nathan Cahill <nathan@nathancahill>",
     "svelte": "src/index.js",
     "module": "dist/index.mjs",
     "main": "dist/index.js",
