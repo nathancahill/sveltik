@@ -1,6 +1,5 @@
 <script>
     import { getContext, createEventDispatcher } from 'svelte'
-    import { omit } from 'lodash-es'
     import { values, touched, errors, warnings, validators } from './stores'
 
     const contextHandleInput = getContext('handleInput')
@@ -50,8 +49,8 @@
     {:else}
         <select
             name={name}
-            {...omit($$props, ['as', 'name', 'validate'])}
             value={$values[name]}
+            {...$$restProps}
             on:blur={handleBlur}
             on:input={handleInput}
         >
@@ -61,8 +60,8 @@
 {:else if as === 'textarea'}
     <textarea
         name={name}
-        {...omit($$props, ['as', 'name', 'validate'])}
         value={$values[name]}
+        {...$$restProps}
         on:blur={handleBlur}
         on:input={handleInput}
     />
@@ -71,6 +70,7 @@
         name={name}
         type="checkbox"
         checked={$values[name]}
+        {...$$restProps}
         on:blur={handleBlur}
         on:change={handleInput}
     />
@@ -94,7 +94,7 @@
             error: $errors[name],
             warning: $warnings[name],
         }}
-        props={omit($$props, ['as', 'name', 'validate'])}
+        props={$$restProps}
     />
 {:else}
     <slot
@@ -119,17 +119,18 @@
         {#if type === 'number'}
             <input
                 name={name}
-                {...omit($$props, ['as', 'name', 'validate'])}
                 type="number"
                 value={$values[name]}
+                {...$$restProps}
                 on:blur={handleBlur}
                 on:input={handleInput}
             />
         {:else}
             <input
                 name={name}
-                {...omit($$props, ['as', 'name', 'validate'])}
                 value={$values[name]}
+                type={type}
+                {...$$restProps}
                 on:blur={handleBlur}
                 on:input={handleInput}
             />
