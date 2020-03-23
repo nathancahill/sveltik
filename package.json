@@ -18,13 +18,12 @@
         "jsdom": "^16.2.1",
         "prettier": "^2.0.1",
         "rollup": "^1.32.1",
-        "rollup-plugin-svelte": "^5.1.1",
-        "svelte": "^3.0.0"
+        "rollup-plugin-svelte": "^5.1.1"
     },
     "dependencies": {
         "code-red": "^0.1.1",
         "lodash-es": "^4.0.0",
-        "svelte": "^3.0.0"
+        "svelte": "^3.20.1"
     },
     "keywords": [
         "svelte"

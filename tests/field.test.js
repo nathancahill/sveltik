@@ -30,7 +30,15 @@ test('checkbox', async () => {
     const { html } = await render('./tests/fixtures/checkbox.svelte')
 
     expect(clean(html)).toMatchInlineSnapshot(
-        `"<input name=\\"color\\" type=\\"checkbox\\" >"`,
+        `"<input name=\\"color\\" type=\\"checkbox\\">"`,
+    )
+})
+
+test('checkbox with rest', async () => {
+    const { html } = await render('./tests/fixtures/checkbox-rest.svelte')
+
+    expect(clean(html)).toMatchInlineSnapshot(
+        `"<input name=\\"color\\" type=\\"checkbox\\" class=\\"purple\\">"`,
     )
 })
 
@@ -38,7 +46,7 @@ test('input', async () => {
     const { html } = await render('./tests/fixtures/as-input.svelte')
 
     expect(clean(html)).toMatchInlineSnapshot(
-        `"<input name=\\"color\\" value=\\"undefined\\">"`,
+        `"<input name=\\"color\\" value=\\"undefined\\" type=\\"text\\">"`,
     )
 })
 
