@@ -12,7 +12,7 @@
         "@babel/preset-env": "^7.9.5",
         "@rollup/plugin-node-resolve": "^7.1.1",
         "@testing-library/jest-dom": "^5.3.0",
-        "babel-jest": "^25.2.6",
+        "babel-jest": "^25.3.0",
         "dainte": "^0.1.4",
         "jest": "^25.2.7",
         "jsdom": "^16.2.2",
