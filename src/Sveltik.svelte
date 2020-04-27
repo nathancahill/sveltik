@@ -172,6 +172,14 @@
         validateForm,
     }
 
+    const getBag = () => ({
+        errors: $errors,
+        touched: $touched,
+        values: $values,
+        warnings: $warnings,
+        ...bag,
+    })
+
     function handleBlur({ target: { name } }) {
         touched.update(_t => ({ ..._t, [name]: true }))
 
@@ -211,7 +219,7 @@
         errors.set(initialErrors)
         touched.set(initialTouched)
 
-        onReset($values, bag)
+        onReset($values, getBag())
     }
 
     function handleSubmit() {
@@ -232,7 +240,7 @@
             return
         }
 
-        const result = onSubmit($values, bag)
+        const result = onSubmit($values, getBag())
 
         if (result && typeof result.then === 'function') {
             return Promise.resolve(result)
@@ -246,7 +254,7 @@
             if ($validators[onlyField]) {
                 errors.update(_e => ({
                     ..._e,
-                    [onlyField]: $validators[onlyField](nextValues[onlyField], bag),
+                    [onlyField]: $validators[onlyField](nextValues[onlyField], getBag()),
                 }))
             }
 
@@ -254,11 +262,11 @@
         }
 
         const nextErrors = merge(
-            validate(nextValues, bag),
+            validate(nextValues, getBag()),
             mapValues($validators, (_, name) => {
                 if (!$validators[name]) return
 
-                return $validators[name](nextValues[name], bag)
+                return $validators[name](nextValues[name], getBag())
             }),
         )
 
