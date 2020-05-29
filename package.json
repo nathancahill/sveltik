@@ -18,12 +18,13 @@
         "jsdom": "^16.2.2",
         "prettier": "^2.0.5",
         "rollup": "^2.15.0",
+        "prettier-plugin-svelte": "^1.1.0",
+        "rollup": "^2.11.2",
         "rollup-plugin-svelte": "^5.2.2"
     },
     "dependencies": {
-        "code-red": "^0.1.1",
         "lodash-es": "^4.0.0",
-        "svelte": "^3.20.1"
+        "svelte": "^3.23.0"
     },
     "keywords": [
         "svelte"
@@ -35,7 +36,7 @@
     "scripts": {
         "build": "rollup -c",
         "watch": "rollup -cw",
-        "format": "prettier --write \"**/*.js\" \"**/*.json\"",
+        "format": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.svelte\"",
         "test": "jest",
         "preversion": "yarn run test",
         "postversion": "git push && git push --tags"

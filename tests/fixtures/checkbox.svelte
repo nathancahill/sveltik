@@ -1,5 +1,5 @@
 <script>
-import { Field } from '../../src'
+    import { Field } from '../../src'
 </script>
 
-<Field as="checkbox" name="color"></Field>
+<Field as="checkbox" name="color" />

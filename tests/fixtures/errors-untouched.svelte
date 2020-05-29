@@ -1,14 +1,14 @@
 <script>
-import { Sveltik, ErrorMessage } from '../../src'
-import MyError from './my-error.svelte'
+    import { Sveltik, ErrorMessage } from '../../src'
+    import MyError from './my-error.svelte'
 
-let initialErrors = {
-    color: 'Required'
-}
+    let initialErrors = {
+        color: 'Required',
+    }
 
-let initialTouched = {
-    color: false,
-}
+    let initialTouched = {
+        color: false,
+    }
 </script>
 
 <Sveltik {initialErrors} {initialTouched}>

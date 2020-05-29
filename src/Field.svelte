@@ -37,37 +37,19 @@
     {#if multiple}
         <!-- select multiple does not work with spread props -->
         <!-- https://github.com/sveltejs/svelte/issues/4392 -->
-        <select
-            name={name}
-            multiple
-            value={$values[name]}
-            on:blur={handleBlur}
-            on:input={handleInput}
-        >
-            <slot></slot>
+        <select {name} multiple value={$values[name]} on:blur={handleBlur} on:input={handleInput}>
+            <slot />
         </select>
     {:else}
-        <select
-            name={name}
-            value={$values[name]}
-            {...$$restProps}
-            on:blur={handleBlur}
-            on:input={handleInput}
-        >
-            <slot></slot>
+        <select {name} value={$values[name]} {...$$restProps} on:blur={handleBlur} on:input={handleInput}>
+            <slot />
         </select>
     {/if}
 {:else if as === 'textarea'}
-    <textarea
-        name={name}
-        value={$values[name]}
-        {...$$restProps}
-        on:blur={handleBlur}
-        on:input={handleInput}
-    />
+    <textarea {name} value={$values[name]} {...$$restProps} on:blur={handleBlur} on:input={handleInput} />
 {:else if as === 'checkbox'}
     <input
-        name={name}
+        {name}
         type="checkbox"
         checked={$values[name]}
         {...$$restProps}
@@ -77,48 +59,20 @@
 {:else if typeof as === 'object' || typeof as === 'function'}
     <svelte:component
         this={as}
-        field={{
-            name,
-            value: $values[name],
-            handleBlur: contextHandleBlur,
-            handleInput: contextHandleInput,
-        }}
+        field={{ name, value: $values[name], handleBlur: contextHandleBlur, handleInput: contextHandleInput }}
         form={sveltikBag}
-        meta={{
-            initialError: initialErrors[name],
-            initialTouched: initialTouched[name],
-            initialValue: initialValues[name],
-            initialWarning: initialWarnings[name],
-            value: $values[name],
-            touched: $touched[name],
-            error: $errors[name],
-            warning: $warnings[name],
-        }}
+        meta={{ initialError: initialErrors[name], initialTouched: initialTouched[name], initialValue: initialValues[name], initialWarning: initialWarnings[name], value: $values[name], touched: $touched[name], error: $errors[name], warning: $warnings[name] }}
         props={$$restProps}
     />
 {:else}
     <slot
-        field={{
-            name,
-            value: $values[name],
-            handleBlur: contextHandleBlur,
-            handleInput: contextHandleInput,
-        }}
+        field={{ name, value: $values[name], handleBlur: contextHandleBlur, handleInput: contextHandleInput }}
         form={sveltikBag}
-        meta={{
-            initialError: initialErrors[name],
-            initialTouched: initialTouched[name],
-            initialValue: initialValues[name],
-            initialWarning: initialWarnings[name],
-            value: $values[name],
-            touched: $touched[name],
-            error: $errors[name],
-            warning: $warnings[name],
-        }}
+        meta={{ initialError: initialErrors[name], initialTouched: initialTouched[name], initialValue: initialValues[name], initialWarning: initialWarnings[name], value: $values[name], touched: $touched[name], error: $errors[name], warning: $warnings[name] }}
     >
         {#if type === 'number'}
             <input
-                name={name}
+                {name}
                 type="number"
                 value={$values[name]}
                 {...$$restProps}
@@ -126,14 +80,7 @@
                 on:input={handleInput}
             />
         {:else}
-            <input
-                name={name}
-                value={$values[name]}
-                type={type}
-                {...$$restProps}
-                on:blur={handleBlur}
-                on:input={handleInput}
-            />
+            <input {name} value={$values[name]} {type} {...$$restProps} on:blur={handleBlur} on:input={handleInput} />
         {/if}
     </slot>
 {/if}
