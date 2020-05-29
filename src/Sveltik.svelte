@@ -321,8 +321,5 @@
     {handleInput}
     {handleReset}
     {handleSubmit}
-    props={{ errors: $errors, touched: $touched, values: $values, warnings: $warnings,
-        isDirty, isSubmitting, isValid, isValidating, status, submitAttemptCount, submitFailureCount, submitSuccessCount,
-        resetForm, setErrors, setFieldError, setFieldTouched, setFieldValue, setFieldWarning, setStatus, setSubmitting, setTouched, setValues, setWarnings, submitFailure, submitForm, submitSuccess, validateField, validateForm,
-        handleBlur, handleInput, handleReset, handleSubmit }}
+    props={{ errors: $errors, touched: $touched, values: $values, warnings: $warnings, isDirty, isSubmitting, isValid, isValidating, status, submitAttemptCount, submitFailureCount, submitSuccessCount, resetForm, setErrors, setFieldError, setFieldTouched, setFieldValue, setFieldWarning, setStatus, setSubmitting, setTouched, setValues, setWarnings, submitFailure, submitForm, submitSuccess, validateField, validateForm, handleBlur, handleInput, handleReset, handleSubmit }}
 />
