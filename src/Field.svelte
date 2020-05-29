@@ -15,7 +15,6 @@
     export let as = undefined
     export let type = 'text'
     export let name
-    export let multiple = false
     export let validate = undefined
 
     const dispatch = createEventDispatcher()
@@ -34,17 +33,9 @@
 </script>
 
 {#if as === 'select'}
-    {#if multiple}
-        <!-- select multiple does not work with spread props -->
-        <!-- https://github.com/sveltejs/svelte/issues/4392 -->
-        <select {name} multiple value={$values[name]} on:blur={handleBlur} on:input={handleInput}>
-            <slot />
-        </select>
-    {:else}
-        <select {name} value={$values[name]} {...$$restProps} on:blur={handleBlur} on:input={handleInput}>
-            <slot />
-        </select>
-    {/if}
+    <select {name} value={$values[name]} {...$$restProps} on:blur={handleBlur} on:input={handleInput}>
+        <slot />
+    </select>
 {:else if as === 'textarea'}
     <textarea {name} value={$values[name]} {...$$restProps} on:blur={handleBlur} on:input={handleInput} />
 {:else if as === 'checkbox'}
