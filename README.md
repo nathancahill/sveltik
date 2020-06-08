@@ -53,7 +53,7 @@ the render prop pattern in React.
 
 ### Example
 
-[Open in REPL](https://svelte.dev/repl/5ba56f98dc7f4911818ec5617c6b3024?version=3.19.0)
+[Open in REPL](https://svelte.dev/repl/5ba56f98dc7f4911818ec5617c6b3024?version=3)
 
 ```html
 <script>
@@ -341,7 +341,7 @@ With no options passed, `<Field />` will default to an HTML `<input />` element.
 
 ### Example
 
-[Open in REPL](https://svelte.dev/repl/47dade3d6be14be685c0347e0d525de7?version=3.19.1)
+[Open in REPL](https://svelte.dev/repl/47dade3d6be14be685c0347e0d525de7?version=3)
 
 **MyInput.svelte**
 
