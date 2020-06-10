@@ -51,3 +51,40 @@
 
 <Field name="steps" as={StepCounter} />
 ```
+
+### Svelte-Tags-Input
+
+A small wrapper around [agustinl/svelte-tags-input](https://github.com/agustinl/svelte-tags-input).
+
+[Open in REPL](https://svelte.dev/repl/d7845c3d47fa4c5a903f48bb65b00c16?version=3)
+
+**TagsInput.svelte**
+
+```html
+<script>
+    import Tags from 'svelte-tags-input'
+
+    export let field
+    const { name, handleInput } = field
+
+    function handleTags({ detail: { tags } }) {
+        handleInput({ target: { name, value: tags } })
+    }
+</script>
+
+<Tags on:tags={handleTags} tags={field.value} {name} />
+```
+
+**App.svelte**
+
+```html
+<script>
+    import { Sveltik, Field } from 'sveltik'
+
+    import TagsInput from './TagsInput.svelte'
+</script>
+
+<Sveltik initialValues={{ tags: ['one', 'two'] }}>
+    <Field name="tags" as={TagsInput} />
+</Sveltik>
+```
