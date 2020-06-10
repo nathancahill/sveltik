@@ -4,31 +4,29 @@ Forms in Svelte, inspired by [Formik](https://jaredpalmer.com/formik/).
 
 ```html
 <script>
-import { Sveltik, Form, Field, ErrorMessage } from 'sveltik'
+    import { Sveltik, Form, Field, ErrorMessage } from 'sveltik'
 
-let initialValues = {
-    email: '',
-    password: '',
-}
-
-let validate = values => {
-    const errors = {}
-    if (!values.email) {
-        errors.email = 'Required'
-    } else if (
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-    ) {
-        errors.email = 'Invalid email address'
+    let initialValues = {
+        email: '',
+        password: '',
     }
-    return errors
-}
 
-let onSubmit = (values, { setSubmitting }) => {
-    setTimeout(() => {
-        alert(JSON.stringify(values, null, 2))
-        setSubmitting(false)
-    }, 400)
-}
+    let validate = values => {
+        const errors = {}
+        if (!values.email) {
+            errors.email = 'Required'
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+            errors.email = 'Invalid email address'
+        }
+        return errors
+    }
+
+    let onSubmit = (values, { setSubmitting }) => {
+        setTimeout(() => {
+            alert(JSON.stringify(values, null, 2))
+            setSubmitting(false)
+        }, 400)
+    }
 </script>
 
 <Sveltik {initialValues} {validate} {onSubmit} let:isSubmitting>
@@ -37,9 +35,7 @@ let onSubmit = (values, { setSubmitting }) => {
         <ErrorMessage name="email" as="div" />
         <Field type="password" name="password" />
         <ErrorMessage name="password" as="div" />
-        <button type="submit" disabled={isSubmitting}>
-            Submit
-        </button>
+        <button type="submit" disabled={isSubmitting}>Submit</button>
     </Form>
 </Sveltik>
 ```
@@ -57,35 +53,35 @@ the render prop pattern in React.
 
 ```html
 <script>
-import { Sveltik } from 'sveltik'
+    import { Sveltik } from 'sveltik'
 </script>
 
 <div>
-  <h1>My Form</h1>
-  <Sveltik
-    initialValues={{ name: 'jared' }}
-    onSubmit={(values, actions) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        actions.setSubmitting(false);
-      }, 1000);
-    }}
-    let:props
-  >
-    <form on:submit|preventDefault={props.handleSubmit}>
-      <input
-        type="text"
-        on:change={props.handleChange}
-        on:blur={props.handleBlur}
-        value={props.values.name}
-        name="name"
-      />
-      {#if props.errors.name}
-        <div id="feedback">{props.errors.name}</div>
-      {/if}
-      <button type="submit">Submit</button>
-    </form>
-  </Sveltik>
+    <h1>My Form</h1>
+    <Sveltik
+        initialValues={{ name: 'jared' }}
+        onSubmit={(values, actions) => {
+            setTimeout(() => {
+                alert(JSON.stringify(values, null, 2))
+                actions.setSubmitting(false)
+            }, 1000)
+        }}
+        let:props
+    >
+        <form on:submit|preventDefault={props.handleSubmit}>
+            <input
+                type="text"
+                on:change={props.handleChange}
+                on:blur={props.handleBlur}
+                value={props.values.name}
+                name="name"
+            />
+            {#if props.errors.name}
+                <div id="feedback">{props.errors.name}</div>
+            {/if}
+            <button type="submit">Submit</button>
+        </form>
+    </Sveltik>
 </div>
 ```
 
@@ -347,8 +343,8 @@ With no options passed, `<Field />` will default to an HTML `<input />` element.
 
 ```html
 <script>
-export let field
-export let props
+    export let field
+    export let props
 </script>
 
 <input {...field} {...props} on:input={field.handleInput} on:blur={field.handleBlur} />
@@ -358,48 +354,48 @@ export let props
 
 ```html
 <script>
-import { Sveltik, Form, Field } from 'sveltik'
-import MyInput from './MyInput.svelte'
+    import { Sveltik, Form, Field } from 'sveltik'
+    import MyInput from './MyInput.svelte'
 </script>
 
 <div>
-  <h1>My Form</h1>
-  <Sveltik
-    initialValues={{ email: '', color: 'red', firstName: '', lastName: '' }}
-    onSubmit={(values, actions) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        actions.setSubmitting(false);
-      }, 1000);
-    }}
-  >
-    <Form>
-      <Field type="email" name="email" placeholder="Email" />
-      <Field as="select" name="color">
-        <option value="red">Red</option>
-        <option value="green">Green</option>
-        <option value="blue">Blue</option>
-      </Field>
+    <h1>My Form</h1>
+    <Sveltik
+        initialValues={{ email: '', color: 'red', firstName: '', lastName: '' }}
+        onSubmit={(values, actions) => {
+            setTimeout(() => {
+                alert(JSON.stringify(values, null, 2))
+                actions.setSubmitting(false)
+            }, 1000)
+        }}
+    >
+        <Form>
+            <Field type="email" name="email" placeholder="Email" />
+            <Field as="select" name="color">
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+            </Field>
 
-      <Field name="firstName" let:field let:meta>
-        <div>
-          <input
-            type="text"
-            placeholder="Jon"
-            {...field}
-            on:input={field.handleInput}
-            on:blur={field.handleBlur}
-          />
-          {#if meta.touched && meta.error}
-            <div className="error">{meta.error}</div>
-          {/if}
-        </div>
-      </Field>
+            <Field name="firstName" let:field let:meta>
+                <div>
+                    <input
+                        type="text"
+                        placeholder="Jon"
+                        {...field}
+                        on:input={field.handleInput}
+                        on:blur={field.handleBlur}
+                    />
+                    {#if meta.touched && meta.error}
+                        <div className="error">{meta.error}</div>
+                    {/if}
+                </div>
+            </Field>
 
-      <Field name="lastName" placeholder="Doe" as={MyInput} />
-      <button type="submit">Submit</button>
-    </Form>
-  </Sveltik>
+            <Field name="lastName" placeholder="Doe" as={MyInput} />
+            <button type="submit">Submit</button>
+        </Form>
+    </Sveltik>
 </div>
 ```
 
