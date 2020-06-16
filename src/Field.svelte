@@ -61,6 +61,6 @@
         form={sveltikBag}
         meta={{ initialError: initialErrors[name], initialTouched: initialTouched[name], initialValue: initialValues[name], initialWarning: initialWarnings[name], value: $values[name], touched: $touched[name], error: $errors[name], warning: $warnings[name] }}
     >
-        <input {name} value={$values[name]} {type} {...$$restProps} on:blur={handleBlur} on:input={handleInput} />
+        <input {name} {type} value={$values[name]} {...$$restProps} on:blur={handleBlur} on:input={handleInput} />
     </slot>
 {/if}

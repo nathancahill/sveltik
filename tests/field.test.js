@@ -46,7 +46,7 @@ test('input', async () => {
     const { html } = await render('./tests/fixtures/as-input.svelte')
 
     expect(clean(html)).toMatchInlineSnapshot(
-        `"<input name=\\"color\\" value=\\"undefined\\" type=\\"text\\">"`,
+        `"<input name=\\"color\\" type=\\"text\\" value=\\"undefined\\">"`,
     )
 })
 
