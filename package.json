@@ -1,6 +1,6 @@
 {
     "name": "sveltik",
-    "version": "0.1.12",
+    "version": "0.1.13",
     "repository": "git@github.com:nathancahill/sveltik.git",
     "author": "Nathan Cahill <nathan@nathancahill>",
     "svelte": "src/index.js",
@@ -11,19 +11,19 @@
         "@babel/core": "^7.10.2",
         "@babel/preset-env": "^7.10.2",
         "@rollup/plugin-node-resolve": "^8.0.1",
-        "@testing-library/jest-dom": "^5.9.0",
+        "@testing-library/jest-dom": "^5.10.1",
         "babel-jest": "^26.0.1",
         "dainte": "^0.1.4",
         "jest": "^26.0.1",
         "jsdom": "^16.2.2",
         "prettier": "^2.0.5",
-        "rollup": "^2.15.0",
+        "prettier-plugin-svelte": "^1.1.0",
+        "rollup": "^2.16.1",
         "rollup-plugin-svelte": "^5.2.2"
     },
     "dependencies": {
-        "code-red": "^0.1.1",
         "lodash-es": "^4.0.0",
-        "svelte": "^3.20.1"
+        "svelte": "^3.23.0"
     },
     "keywords": [
         "svelte"
@@ -35,7 +35,7 @@
     "scripts": {
         "build": "rollup -c",
         "watch": "rollup -cw",
-        "format": "prettier --write \"**/*.js\" \"**/*.json\"",
+        "format": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.svelte\"",
         "test": "jest",
         "preversion": "yarn run test",
         "postversion": "git push && git push --tags"

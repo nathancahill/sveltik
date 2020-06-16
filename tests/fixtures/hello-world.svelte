@@ -1,9 +1,9 @@
 <script>
-import { Sveltik } from '../../src'
+    import { Sveltik } from '../../src'
 
-const initialValues = {
-    name: 'world'
-}
+    const initialValues = {
+        name: 'world',
+    }
 </script>
 
 <Sveltik {initialValues} let:values>

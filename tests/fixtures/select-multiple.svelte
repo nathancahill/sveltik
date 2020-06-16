@@ -1,5 +1,5 @@
 <script>
-import { Field } from '../../src'
+    import { Field } from '../../src'
 </script>
 
 <Field as="select" name="color" multiple>

@@ -11,8 +11,8 @@
     function propsToString(p) {
         const s = reduce(
             omit(p, omitted),
-            (a, v, k) => typeof v === 'boolean' ? `${a} ${k}`.trim() : `${a} ${k}="${v}"`.trim(),
-            ''
+            (a, v, k) => (typeof v === 'boolean' ? `${a} ${k}`.trim() : `${a} ${k}="${v}"`.trim()),
+            '',
         )
 
         return s ? ` ${s}` : ''

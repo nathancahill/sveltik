@@ -1,5 +1,5 @@
 <script>
-import { Field } from '../../src'
+    import { Field } from '../../src'
 </script>
 
 <Field name="color" let:field>
