@@ -1,8 +1,7 @@
 <script>
     import { isEqual, pickBy, isEmpty, mapValues, keys, merge } from 'lodash-es'
     import { onMount, setContext, tick } from 'svelte'
-    import { readable } from 'svelte/store'
-    import { values, errors, warnings, touched, validators } from './stores'
+    import { readable, writable } from 'svelte/store'
 
     export let enableReinitialize = false
     export let initialStatus = undefined
@@ -21,10 +20,17 @@
     export let validateOnChange = true
     export let validateOnMount = false
 
-    errors.set(initialErrors)
-    touched.set(initialTouched)
-    values.set(initialValues)
-    warnings.set(initialWarnings)
+    const values = writable(initialValues)
+    const errors = writable(initialErrors)
+    const warnings = writable(initialWarnings)
+    const touched = writable(initialTouched)
+    const validators = writable({})
+
+    setContext('values', values)
+    setContext('errors', errors)
+    setContext('warnings', warnings)
+    setContext('touched', touched)
+    setContext('validators', validators)
 
     setContext('initialErrors', initialErrors)
     setContext('initialTouched', initialTouched)

@@ -1,6 +1,11 @@
 <script>
     import { getContext, createEventDispatcher } from 'svelte'
-    import { values, touched, errors, warnings, validators } from './stores'
+
+    const values = getContext('values')
+    const errors = getContext('errors')
+    const warnings = getContext('warnings')
+    const touched = getContext('touched')
+    const validators = getContext('validators')
 
     const contextHandleInput = getContext('handleInput')
     const contextHandleBlur = getContext('handleBlur')

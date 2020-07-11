@@ -1,10 +1,13 @@
 <script>
     import { omit, reduce } from 'lodash-es'
-    import { errors, touched } from './stores'
+    import { getContext } from 'svelte'
 
     export let name
     export let as = undefined
     const omitted = ['name', 'as']
+
+    const errors = getContext('errors')
+    const touched = getContext('touched')
 
     $: error = $errors[name]
 

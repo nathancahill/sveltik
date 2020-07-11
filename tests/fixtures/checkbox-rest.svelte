@@ -1,5 +1,7 @@
 <script>
-    import { Field } from '../../src'
+    import { Sveltik, Field } from '../../src'
 </script>
 
-<Field as="checkbox" name="color" class="purple" />
+<Sveltik>
+    <Field as="checkbox" name="color" class="purple" />
+</Sveltik>
