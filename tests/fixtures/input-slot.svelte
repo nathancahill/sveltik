@@ -1,7 +1,9 @@
 <script>
-    import { Field } from '../../src'
+    import { Sveltik, Field } from '../../src'
 </script>
 
-<Field name="color">
-    <input type="text" name="color" />
-</Field>
+<Sveltik>
+    <Field name="color">
+        <input type="text" name="color" />
+    </Field>
+</Sveltik>
