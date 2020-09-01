@@ -9,7 +9,7 @@
     "license": "MIT",
     "devDependencies": {
         "@babel/core": "^7.11.4",
-        "@babel/preset-env": "^7.11.0",
+        "@babel/preset-env": "^7.11.5",
         "@rollup/plugin-node-resolve": "^9.0.0",
         "@testing-library/jest-dom": "^5.11.4",
         "babel-jest": "^26.3.0",
