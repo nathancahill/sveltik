@@ -19,7 +19,7 @@
         "prettier": "^2.1.2",
         "prettier-plugin-svelte": "^1.4.1",
         "rollup": "^2.33.1",
-        "rollup-plugin-svelte": "^5.2.3"
+        "rollup-plugin-svelte": "^6.1.0"
     },
     "dependencies": {
         "lodash-es": "^4.0.0",
