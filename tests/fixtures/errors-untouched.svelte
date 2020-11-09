@@ -16,7 +16,5 @@
     <ErrorMessage name="color" as="div" class="error" />
     <ErrorMessage name="color" />
     <ErrorMessage name="color" as={MyError} id="my-error" />
-    <ErrorMessage name="color" let:msg>
-        <span>{msg}</span>
-    </ErrorMessage>
+    <ErrorMessage name="color" let:msg><span>{msg}</span></ErrorMessage>
 </Sveltik>

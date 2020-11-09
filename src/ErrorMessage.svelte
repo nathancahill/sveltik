@@ -1,6 +1,9 @@
 <script>
     import { omit, reduce } from 'lodash-es'
-    import { errors, touched } from './stores'
+    import { getContext } from 'svelte'
+
+    const errors = getContext('errors')
+    const touched = getContext('touched')
 
     export let name
     export let as = undefined

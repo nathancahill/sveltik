@@ -1,7 +1,7 @@
 <script>
-    import { Field } from '../../src'
+    import { Sveltik, Field } from '../../src'
 </script>
 
-<Field name="color" let:field>
-    <input type="text" {...field} />
-</Field>
+<Sveltik>
+    <Field name="color" let:field><input type="text" {...{ name: field.name, value: field.value }} /></Field>
+</Sveltik>
