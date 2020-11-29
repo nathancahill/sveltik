@@ -95,7 +95,7 @@ the render prop pattern in React.
 - `initialWarnings?: SveltikWarnings<Values>`
 - `onReset?: (values: Values, sveltikBag: SveltikBag) => void`
 - `onSubmit: (values: Values, sveltikBag: SveltikBag) => void | Promise<any>`
-- `validate?: (values: Values) => SveltikErrors<Values>`
+- `validate?: (values: Values, sveltikBag: SveltikBag) => SveltikErrors<Values>`
 - `validateOnBlur?: boolean`
 - `validateOnChange?: boolean`
 - `validateOnMount?: boolean`
