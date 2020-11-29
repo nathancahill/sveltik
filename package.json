@@ -1,6 +1,6 @@
 {
     "name": "sveltik",
-    "version": "0.1.13",
+    "version": "0.1.14",
     "repository": "github:nathancahill/sveltik",
     "author": "Nathan Cahill <nathan@nathancahill>",
     "svelte": "src/index.js",
