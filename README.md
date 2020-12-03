@@ -103,7 +103,7 @@ the render prop pattern in React.
 ### let:props
 
 - `let:props: SveltikProps`
-- `let:dirty: boolean`
+- `let:isDirty: boolean`
 - `let:errors: { [field: string]: string }`
 - `let:handleBlur: (e: HTMLBlurEvent) => void`
 - `let:handleChange: (e: HTMLInputEvent) => void`
@@ -192,7 +192,7 @@ Default is `false`. Use this option to tell Sveltik to run validations when the 
 All of these props are exposed individually as well as a master `let:props` prop which is an object
 of all available props.
 
-##### `let:dirty: boolean`
+##### `let:isDirty: boolean`
 
 Returns `true` if values are not deeply equal from initial values, `false` otherwise. `dirty` is a readonly computed property and should not be mutated directly.
 
