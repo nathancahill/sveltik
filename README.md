@@ -113,6 +113,7 @@ the render prop pattern in React.
 - `let:isValid: boolean`
 - `let:isValidating: boolean`
 - `let:resetForm: (nextInitialState?: SveltikState<Values>) => void`
+- `let:scrollFirstErrorIntoView: () => void`
 - `let:setErrors: (fields: { [field: string]: string }) => void`
 - `let:setFieldError: (field: string, errorMsg: string) => void`
 - `let:setFieldTouched: (field: string, isTouched?: boolean, shouldValidate?: boolean) => void`
@@ -232,6 +233,10 @@ Returns `true` if Sveltik is running validation during submission, or by calling
 ##### `let:resetForm: (nextInitialState?: SveltikState<Values>) => void`
 
 Imperatively reset the form. If `nextInitialState` is specified, Sveltik will set this state as the new "initial state" and use the related values of `nextInitialState` to update the form's `initialValues` as well as `initialTouched`, `initialStatus`, `initialErrors`. This is useful for altering the initial state (i.e. "base") of the form after changes have been made. If `nextInitialState` is not defined, then Sveltik will reset state to the original initial state.
+
+##### `let:scrollFirstErrorIntoView: () => void`
+
+Scroll the first `<ScrollMarker />` with an error into view. First is calculated by the vertical distance from the top of the document.
 
 ##### `let:setErrors: (fields: { [field: string]: string }) => void`
 
@@ -525,3 +530,20 @@ A field's error message.
 
 - Nested field names (paths) are not supported.
 - Uses `as` prop instead of `component` for consistency with `<Field />`
+
+## `<ScrollMarker />`
+
+`<ScrollMarker />` marks the DOM scroll position of a form element in the document.
+It renders a zero-height div. Useful for scrolling to the first field with an error.
+
+### Props
+
+- `name: string`
+
+### Reference
+
+#### Props
+
+##### `name: string`
+
+A field's name in Sveltik state. Required.

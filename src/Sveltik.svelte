@@ -1,5 +1,15 @@
 <script>
-    import { isEqual, pickBy, isEmpty, mapValues, keys, merge } from 'lodash-es'
+    import {
+        isEqual,
+        pick,
+        pickBy,
+        isEmpty,
+        mapValues,
+        keys,
+        merge,
+        minBy,
+        toPairs,
+    } from 'lodash-es'
     import { onMount, setContext, tick } from 'svelte'
     import { readable, writable } from 'svelte/store'
 
@@ -25,12 +35,14 @@
     const warnings = writable(initialWarnings)
     const touched = writable(initialTouched)
     const validators = writable({})
+    const markers = writable({})
 
     setContext('values', values)
     setContext('errors', errors)
     setContext('warnings', warnings)
     setContext('touched', touched)
     setContext('validators', validators)
+    setContext('markers', markers)
 
     setContext('initialErrors', initialErrors)
     setContext('initialTouched', initialTouched)
@@ -50,6 +62,20 @@
     $: {
         if (enableReinitialize) {
             values.set(initialValues)
+        }
+    }
+
+    function scrollFirstErrorIntoView() {
+        const errorMarkers = pick($markers, keys(pickBy($errors)))
+        const scrollHeights = mapValues(errorMarkers, node => {
+            const domRect = node.getBoundingClientRect()
+            return domRect.y
+        })
+
+        const top = minBy(toPairs(scrollHeights), o => o[1])
+
+        if (top) {
+            $markers[top[0]].scrollIntoView()
         }
     }
 
@@ -80,7 +106,11 @@
         errors.update(_e => ({ ..._e, [field]: errorMsg }))
     }
 
-    function setFieldTouched(field, isTouched, shouldValidate = validateOnBlur) {
+    function setFieldTouched(
+        field,
+        isTouched,
+        shouldValidate = validateOnBlur,
+    ) {
         touched.update(_t => ({ ..._t, [field]: isTouched }))
 
         if (isTouched && shouldValidate) {
@@ -176,6 +206,7 @@
         submitSuccess,
         validateField,
         validateForm,
+        scrollFirstErrorIntoView,
     }
 
     const getBag = () => ({
@@ -201,7 +232,10 @@
         if (type === 'range' || type === 'number') {
             nextValue = nextValue === '' ? undefined : +nextValue
         } else if (type === 'select-multiple') {
-            nextValue = [].map.call(target.querySelectorAll(':checked'), option => option.value)
+            nextValue = [].map.call(
+                target.querySelectorAll(':checked'),
+                option => option.value,
+            )
         } else if (type === 'checkbox') {
             nextValue = checked
         }
@@ -260,7 +294,10 @@
             if ($validators[onlyField]) {
                 errors.update(_e => ({
                     ..._e,
-                    [onlyField]: $validators[onlyField](nextValues[onlyField], getBag()),
+                    [onlyField]: $validators[onlyField](
+                        nextValues[onlyField],
+                        getBag(),
+                    ),
                 }))
             }
 
@@ -294,6 +331,7 @@
     })
 </script>
 
+<!-- prettier-ignore -->
 <slot
     errors={$errors}
     touched={$touched}
