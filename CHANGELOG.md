@@ -1,5 +1,9 @@
 # Changelog
 
+### [v0.1.16](https://github.com/nathancahill/sveltik/releases/tag/v0.1.16)
+
+- Add `<ScrollMarker />` to package exports
+
 ### [v0.1.15](https://github.com/nathancahill/sveltik/releases/tag/v0.1.15)
 
 - Add `<ScrollMarker />` and `scrollFirstErrorIntoView()`
