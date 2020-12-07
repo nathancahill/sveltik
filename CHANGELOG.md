@@ -1,5 +1,9 @@
 # Changelog
 
+### [v0.1.15](https://github.com/nathancahill/sveltik/releases/tag/v0.1.15)
+
+- Add `<ScrollMarker />` and `scrollFirstErrorIntoView()`
+
 ### [v0.1.14](https://github.com/nathancahill/sveltik/releases/tag/v0.1.14)
 
 - Moves stores to context, allowing multiple forms [nathancahill/sveltik#127](https://github.com/nathancahill/sveltik/pull/127)
