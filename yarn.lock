@@ -3650,10 +3650,10 @@ prelude-ls@~1.1.2:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
   integrity sha1-IZMqVJ9eUv/ZqCf1cOBL5iqX2lQ=
 
-prettier-plugin-svelte@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-svelte/-/prettier-plugin-svelte-2.0.1.tgz#ff5a4287ab7cd814c60b942691ab04a0c76767e9"
-  integrity sha512-sZCqTwNJ40huLocC7g8bibGwf8vS727a8LwbgVB5im3a+2LMX67W3Udtqryx5q2jZAWdJeNcTJGdqg0nMHkrZw==
+prettier-plugin-svelte@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-svelte/-/prettier-plugin-svelte-2.0.2.tgz#449b6d97fb574a1af56fc082cdf4cc517d6f5ecd"
+  integrity sha512-/2pTQZj7Kwo3fW/huqRE7Z5zhzWPtSLhO1TA8yPxlS4qdM1/qbyVEJfFCAdWuPov4DYYxzu3Yfv+fRTZKLqYMQ==
 
 prettier@^2.2.1:
   version "2.2.1"
