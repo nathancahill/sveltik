@@ -71,7 +71,7 @@ the render prop pattern in React.
         <form on:submit|preventDefault={props.handleSubmit}>
             <input
                 type="text"
-                on:change={props.handleChange}
+                on:change={props.handleInput}
                 on:blur={props.handleBlur}
                 value={props.values.name}
                 name="name"
@@ -106,7 +106,7 @@ the render prop pattern in React.
 - `let:isDirty: boolean`
 - `let:errors: { [field: string]: string }`
 - `let:handleBlur: (e: HTMLBlurEvent) => void`
-- `let:handleChange: (e: HTMLInputEvent) => void`
+- `let:handleInput: (e: HTMLInputEvent) => void`
 - `let:handleReset: () => void`
 - `let:handleSubmit: (e: HTMLFormEvent) => void`
 - `let:isSubmitting: boolean`
@@ -182,7 +182,7 @@ Default is `true`. Use this option to run validations on `blur` events. More spe
 
 ##### `validateOnChange?: boolean`
 
-Default is `true`. Use this option to tell Sveltik to run validations on `change` events and `change`-related methods. More specifically, when either `handleChange`, `setFieldValue`, or `setValues` are called.
+Default is `true`. Use this option to tell Sveltik to run validations on `change` events and `change`-related methods. More specifically, when either `handleInput`, `setFieldValue`, or `setValues` are called.
 
 ##### `validateOnMount?: boolean`
 
@@ -206,9 +206,9 @@ Form validation errors. Should match the shape of your form's values defined in 
 `onBlur` event handler. Useful for when you need to track whether an input has been `touched` or not. This should be passed to
 `<input on:blur={handleBlur} ... />`
 
-##### `let:handleChange: (e: HTMLInputEvent) => void`
+##### `let:handleInput: (e: HTMLInputEvent) => void`
 
-General input change event handler. This will update the `values[key]` where `key` is the event-emitting input's `name` attribute. If the `name` attribute is not present, `handleChange` will look for an input's `id` attribute. Note: "input" here means all HTML inputs.
+General input change event handler. This will update the `values[key]` where `key` is the event-emitting input's `name` attribute. If the `name` attribute is not present, `handleInput` will look for an input's `id` attribute. Note: "input" here means all HTML inputs.
 
 ##### `let:handleReset: () => void`
 
