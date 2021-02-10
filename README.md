@@ -71,7 +71,7 @@ the render prop pattern in React.
         <form on:submit|preventDefault={props.handleSubmit}>
             <input
                 type="text"
-                on:change={props.handleInput}
+                on:input={props.handleInput}
                 on:blur={props.handleBlur}
                 value={props.values.name}
                 name="name"
