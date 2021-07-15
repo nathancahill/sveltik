@@ -10,7 +10,7 @@
     "devDependencies": {
         "@babel/core": "^7.14.6",
         "@babel/preset-env": "^7.14.7",
-        "@rollup/plugin-node-resolve": "^13.0.0",
+        "@rollup/plugin-node-resolve": "^13.0.1",
         "@testing-library/jest-dom": "^5.14.1",
         "babel-jest": "^27.0.6",
         "dainte": "^0.1.5",
