@@ -18,7 +18,7 @@
         "jsdom": "^16.6.0",
         "prettier": "^2.3.2",
         "prettier-plugin-svelte": "^2.3.1",
-        "rollup": "^2.53.2",
+        "rollup": "^2.53.3",
         "rollup-plugin-svelte": "^7.1.0"
     },
     "dependencies": {
